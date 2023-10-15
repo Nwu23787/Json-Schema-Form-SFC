@@ -1,0 +1,18 @@
+<script setup lang="ts">
+import { Schema } from "./types";
+const props = defineProps<{
+  schema?: Schema;
+  value?: any;
+  onChange?: (v: any) => void;
+}>();
+
+const handleChange = (e) => {
+  props.onChange(e.target.value);
+};
+</script>
+
+<template>
+  <input type="number" :value="Number(props.value)" @input="handleChange" />
+</template>
+
+<style scoped></style>

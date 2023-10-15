@@ -35,7 +35,13 @@
           ></MonacoEditor>
         </div>
       </div>
-      <div class="form">这是表单</div>
+      <div class="form">
+        <SchemaForm
+          :schema="demo.schema"
+          :value="demo.data"
+          :onChange="handleChange"
+        ></SchemaForm>
+      </div>
     </div>
   </div>
 </template>
@@ -46,13 +52,16 @@ import MonacoEditor from "./components/MonacoEditor";
 //导入测试数据对象
 import demos from "./demos";
 
+//导入表单
+import SchemaForm from "../lib/SchemaForm.vue";
+
 // 传给 monac 的schema格式化函数
 const toJson = (data: any) => {
   return JSON.stringify(data, null, 2);
 };
 
 // 当前选择的demo测试数据
-const selectedRef: Ref<number> = ref(1);
+const selectedRef: Ref<number> = ref(0);
 
 // 主界面的数据对象
 const demo: {
